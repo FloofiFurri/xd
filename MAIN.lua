@@ -7,43 +7,23 @@ local PlayerService = game:GetService("Players")
 local LocalPlayer = PlayerService.LocalPlayer
 
 local NPCFolder = Workspace.Custom:FindFirstChild("-1") or Workspace.Custom:FindFirstChild("1")
-local Network = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/BRM5/Network.lua"))()
-local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/BRM5/ESPLibrary.lua"))()
-local ConfigSystem = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/BRM5/ConfigSystem.lua"))()
+local Network = loadstring(game:HttpGet("hhttps://raw.githubusercontent.com/FloofiFurri/xd/main/network.lua"))()
+local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/FloofiFurri/xd/main/ESPlib.lua"))()
+local ConfigSystem = loadstring(game:HttpGet("https://raw.githubusercontent.com/FloofiFurri/xd/main/ConfigSystem.lua"))()
 
 local function SaveConfig()
     if isfile("Alex's Scripts/BRM5_SilentAim.json") then
-        writefile("Alex's Scripts/BRM5_SilentAim.json", ConfigSystem.WriteJSON(Config))
+        writefile("BRM5_SilentAim.json", ConfigSystem.WriteJSON(Config))
     else
-        makefolder("Alex's Scripts")
-        writefile("Alex's Scripts/BRM5_SilentAim.json", ConfigSystem.WriteJSON(Config))
+        writefile("BRM5_SilentAim.json", ConfigSystem.WriteJSON(Config))
     end
 end
 local function LoadConfig()
-    if isfile("Alex's Scripts/BRM5_SilentAim.json") then
-        getgenv().Config = ConfigSystem.ReadJSON(readfile("Alex's Scripts/BRM5_SilentAim.json"),Config)
+    if isfile("BRM5_SilentAim.json") then
+        getgenv().Config = ConfigSystem.ReadJSON(readfile("BRM5_SilentAim.json"),Config)
     else
-        makefolder("Alex's Scripts")
-        writefile("Alex's Scripts/BRM5_SilentAim.json", ConfigSystem.WriteJSON(Config))
+        writefile("BRM5_SilentAim.json", ConfigSystem.WriteJSON(Config))
     end
-end
-local function JoinDiscordServer(Server)
-    local HttpService = game:GetService("HttpService")
-    local response = syn.request({
-        ["Url"] = "http://localhost:6463/rpc?v=1",
-        ["Method"] = "POST",
-        ["Headers"] = {
-            ["Content-Type"] = "application/json",
-            ["Origin"] = "https://discord.com"
-        },
-        ["Body"] = HttpService:JSONEncode({
-            ["cmd"] = "INVITE_BROWSER",
-            ["nonce"] = string.lower(HttpService:GenerateGUID(false)),
-            ["args"] = {
-                ["code"] = tostring(Server)
-            }
-        })
-    })
 end
 
 getgenv().Config = {
@@ -91,7 +71,7 @@ local UIConfig = {
     Keybind = Enum.KeyCode.RightShift
 }
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/BracketV3.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/FloofiFurri/xd/main/UILIB.lua"))()
 local Window = Library:CreateWindow(UIConfig, game:GetService("CoreGui"))
 
 local MainTab = Window:CreateTab("Main")
